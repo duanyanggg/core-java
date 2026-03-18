@@ -1,0 +1,38 @@
+//杂注
+win + R + cmd 快速打开命令框
+cd 定位用
+先更改盘
+
+//本地
+
+版本库创建
+$ git init
+//把目录变成Git可以管理的仓库
+$ git status
+//观察现有状态
+$ git add readme.txt
+//把文件提交到缓存区，添加某个文件时，该文件必须在当前目录下存在
+$ git commit -m "wrote a readme file"
+//把文件提交到仓库，-m后面输入的是本次提交的说明
+
+
+更改
+$ git log
+//查看更改记录
+$ git reset --hard “HEAD^”
+//指针回退到上一个版本
+$ git reset --hard 1094a
+//重新回到某个版本
+$ git reflog查看命令历史
+//直接丢弃工作区的修改时，用命令git checkout -- file。
+//添加到了暂存区时，想丢弃修改,先用命令git reset HEAD <file>
+$ git rm test.txt
+//删除文件
+
+远程
+$ git push origin master
+//本地master分支的最新修改推送至GitHub
+$ git remote -v
+//查看远程库信息
+$ git remote rm origin
+//解除了本地和远程的绑定关系
