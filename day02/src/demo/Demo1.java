@@ -3,12 +3,13 @@ package demo;
 public class Demo1 {
     // Ctrl + Alt + Shift + L 重新格式化
     // Ctrl + D 复制当前行到下一行
-    // Ctrl + alt + up/down 移动代码
+    // shift + alt + up/down 移动代码
     // Ctrl + v 删除当前行
-    // alt + insert 查找源码
+    // alt + insert 创建构造器
+    // Ctrl + b 看源码
     // Ctrl + / 单行注释
     // Ctrl + shift + / 多行注释
-
+    // Shift + F6 一次替换所有相同变量名
 
     /*这是一个多行注释
     hhhh*/
