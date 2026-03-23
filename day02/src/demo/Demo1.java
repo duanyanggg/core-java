@@ -12,7 +12,7 @@ public class Demo1 {
     // Ctrl + shift + / 多行注释
     // Shift + F6 一次替换所有相同变量名
     // Ctrl + P 查看方法参数列表
-
+    // Ctrl + Alt + V 自动生成左侧
     /*这是一个多行注释
     hhhh*/
 
