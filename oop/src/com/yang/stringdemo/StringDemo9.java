@@ -40,6 +40,7 @@ public class StringDemo9 {
             }
         }
         str = reverseStr(str);
+        str = str.replaceAll("零+", "零");
         System.out.println(str);;
     }
 
