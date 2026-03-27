@@ -5,9 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * @auther yang
- * @project IntelliJ IDEA
- * @date 2026/3/25
+ * @author yang
  */
 public class app {
     public static void main(String[] args) {
@@ -36,8 +34,9 @@ public class app {
                     default -> System.out.println("错误");
                 }
             } else {
-                System.out.println("输入错误，请输入1到3中的一个数字");
+                System.out.println("输入错误，请输入1到4中的一个数字");
             }
+            System.out.println("可重输");
         }
     }
 
@@ -67,15 +66,15 @@ public class app {
         }
 
         //判断用户名，密码是否正确，三次机会
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i <= 3; i++) {
             if (searchUser(username, password, list)) {
                 System.out.println("登录成功");
                 menu.start();
                 break;
             }
-            System.out.println("用户名或密码错误，请重输");
+            System.out.println("用户名或密码错误，还有" + (3 - i) + "次机会，请重输");
         }
-        return;
+        System.out.println("次数使用完，退出登录");
     }
 
     //判断用户名是否存在
@@ -151,12 +150,11 @@ public class app {
     public static void register(ArrayList<User> list) {
 
         Scanner sc = new Scanner(System.in);
-
+        User user = new User();
         //检测用户名
         while (true) {
             //键盘输入用户名
             System.out.println("请输入你的用户名：");
-
             //用户名唯一
             //用户名长度必须在3~15位之间
             //只能是字母加数字的组合，但是不能是纯数字
@@ -164,6 +162,7 @@ public class app {
             if (!searchName(userName, list)) {
                 if (userName.length() > 2 && userName.length() < 16) {
                     if (checkName(userName)) {
+                        user.setUsername(userName);
                         break;
                     }
                 }
@@ -172,13 +171,14 @@ public class app {
         }
 
         //密码键盘输入两次，两次一致才可以进行注册。
-       while (true) {
+        while (true) {
            System.out.println("请输入你的密码");
            String password = sc.next();
            System.out.println("请再次输入密码，确保密码无误");
            String second = sc.next();
 
            if (password.equals(second)) {
+               user.setPassword(password);
                break;
            }
            System.out.println("两次密码不同，请重新设置密码");
@@ -194,6 +194,7 @@ public class app {
             System.out.println("请输入你的身份证号");
             String idCardCode = sc.next();
             if(checkIdCardCode(idCardCode)) {
+                user.setIdCard(idCardCode);
                 break;
             }
             System.out.println("身份证号码格式错误，请重输");
@@ -204,25 +205,26 @@ public class app {
             System.out.println("请输入你的手机号：");
             String phone = sc.next();
             if(checkPhone(phone)) {
+                user.setPhone(phone);
                 break;
             }
             System.out.println("手机号码格式错误，请重输");
         }
 
-        return;
+        // Add user to list after all validations
+        list.add(user);
     }
 
     //检查名字是否是字母加数字的组合，但是不能是纯数字
     public static boolean checkName(String name) {
-        boolean flag = true;
         //字母个数
         int cont = 0;
         for (int i = 0; i < name.length(); i++) {
             char ch = name.charAt(i);
-            if (!((ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'z'))) {
+            if (!((ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))) {
                 return false;
             }
-            if (ch >= 'a') {
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
                 cont++;
             }
         }
@@ -294,7 +296,7 @@ public class app {
 
         //判断当前用户的身份证号码和手机号码是否一致
         //如果不一致，则提示：账号信息不匹配，修改失败。
-        if (match(userName,idCardCode,phone,list)) {
+        if (!match(userName,idCardCode,phone,list)) {
             System.out.println("账号信息不匹配，修改失败");
             return;
         }

@@ -13,6 +13,8 @@ public class Demo1 {
     // Shift + F6 一次替换所有相同变量名
     // Ctrl + P 查看方法参数列表
     // Ctrl + Alt + V 自动生成左侧
+    //Alt + 回车  查看错误解决方案
+    //Ctrl + A  全选
     /*这是一个多行注释
     hhhh*/
 
